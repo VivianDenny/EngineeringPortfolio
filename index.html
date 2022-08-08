@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- make the onclick for the div work! also make the pop up key skills work -->
+<head>
+    <title>Vivian Denny Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&family=Open+Sans&family=Poppins&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- font-family: 'Frank Ruhl Libre', serif; heading?
+    font-family: 'Open Sans', sans-serif; maybe plain
+    font-family: 'Poppins', sans-serif; maybe plain or subhead-->
+</head>
+
+<body>
+    <div id="homebar">
+        
+        <a class="navlink" href="index.html">Home</a>
+        
+    </div>
+    <div id="maindiv"></div>
+      <script>
+        
+        let proto = [["airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams."],
+        ["injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product."],
+        ["tablemain.png", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router."]]
+        let roboAndProg = [["syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine."],
+        ["carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms."],
+        ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino."],
+        ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos."]]
+        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate."],
+        ["", "Math Tutoring", "I'm not sure if I should include this."]]
+        let orderOfSections = [["Giving Back",giving],
+        ["Robotics & Programming", roboAndProg],
+        ["Prototyping & Design",proto]] //official name to display, array of info
+        setUpPage();
+        function openURL(myURL){
+            console.log("clicked");
+            console.log(myURL);
+            window.open(myURL, "_self")
+        }
+        function openKeyInfo(name){
+            
+            console.log("mouseover");
+            console.log(name);
+            document.getElementById(name).style.opacity="100%";
+         }
+        function closeKeyInfo(headText, paraText, mainDiv, header, para){
+            header.innerHTML=headerText;
+            para.innerHTML = paraText;
+            mainDiv.opacity="70%"
+        }
+        function setUpPage(){
+            var itemsPerRow = 2;
+            for(var sectionNum=0; sectionNum<orderOfSections.length; sectionNum++){
+                var sectionInfo = orderOfSections[sectionNum];
+                var sectionName = sectionInfo[0];
+                var sectionArray = sectionInfo[1];
+                var title = document.createElement("h1");
+                var titleDiv = document.createElement("div");
+                title.innerHTML = sectionName;
+                title.className = "projectSubhead";
+                //style more
+                titleDiv.style.width = "100%";
+                titleDiv.appendChild(title);
+                document.getElementById("maindiv").appendChild(titleDiv);
+                var rows = new Array(Math.ceil(sectionArray.length/Math.floor(12/itemsPerRow)));//is this right??
+                
+                var rowCount = -1;
+                
+                for(var projectNum=0; projectNum<sectionArray.length; projectNum++){
+                    //create stuff. add to a new row every itemsPerRow times
+                    //width is m(12//itemsPerRow)
+                    if(projectNum%itemsPerRow==0){
+                        rowCount+=1;
+                        rows[rowCount] = document.createElement("div");
+                        rows[rowCount].className ="w3-row-padding";
+                        rows[rowCount].style.display="flex";
+                        rows[rowCount].style.marginBottom="5px";
+                        
+                    }
+                    
+                    var myProj = sectionArray[projectNum];//image URL, name, description, key skills
+                    var keySkills = myProj.slice(3);
+                    console.log(keySkills);
+                    
+                    var projBack = document.createElement("div");
+                    projBack.className = "proj_div";
+                    var siteName = myProj[1].toLowerCase().replace(" ", "_")+".html";//format for sites
+                    console.log(siteName)
+                    //projBack.setAttribute("onclick", "openURL",siteName);
+                    //projBack.onclick="openURL("+siteName+")";//this might be wrong :(
+                    var urlInfo = "url("+myProj[0]+")";
+                    console.log(urlInfo);
+                    var link = document.createElement("a");
+                    link.href = siteName;
+                    link.className="w3-col s"+Math.floor(12/itemsPerRow)+" w3-center";
+                    projBack.style.backgroundImage=urlInfo;
+                    projBack.style.backgroundRepeat="no-repeat";
+                    projBack.style.backgroundSize = "100% 100%";
+                    projBack.style.height="100%";
+                    projBack.style.padding="2%";
+                    projBack.style.marginLeft="3px";
+                    projBack.style.marginRight="3px";
+                    projBack.style.marginBottom="3px";
+                    projBack.style.marginTop="3px";
+                    projBack.style.backgroundColor = "white";
+                    projBack.style.maxHeight = "300px";
+                    projBack.style.overflowY="auto";
+                    
+                    
+
+                    var infoText = document.createElement("div");
+                    infoText.className = "overlay";
+                    var infoHead = document.createElement("h3");
+                    infoHead.innerHTML = myProj[1];
+                    var infop = document.createElement("p");
+                    infop.innerHTML = myProj[2];
+                    infop.style.fontSize = "18px";
+                    infoHead.style.fontSize="25px";
+                    infoText.appendChild(infoHead);
+                    infoText.id=myProj[1];
+                    infoText.appendChild(infop);
+
+                    projBack.appendChild(infoText);
+                    link.appendChild(projBack);
+                    rows[rowCount].appendChild(link);
+                    var name = myProj[1];
+                    
+                    // projBack.onmouseover = function(){
+                    //     openKeyInfo(name);
+                    // };
+                    //projBack.onmouseout="closeKeyInfo(myProj[1],myProj[2],infoText, infoHead, infop)";
+                    //change row?? and append old to doc first
+                    if((projectNum!=0 && projectNum==sectionArray.length-1) || projectNum%itemsPerRow==0){
+                        document.getElementById("maindiv").appendChild(rows[rowCount]);
+                       // console.log(rowCount);
+                    }
+                }
+            }
+        }
+      </script>
+    </body>
