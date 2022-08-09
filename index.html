@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- make the onclick for the div work! also make the pop up key skills work -->
+<!-- NEXT: make the picture slideshow at top of the popup, update with real information, format the pop up, add a title and maybe pic of me at the top of page -->
 <head>
     <title>Vivian Denny Engineering Portfolio</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -14,23 +14,46 @@
 </head>
 
 <body>
-    <div id="homebar">
-        
-        <a class="navlink" href="index.html">Home</a>
-        
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="mTitle"></h3>
+            <p id="date"></p>
+            <div id="keyWords"></div>
+            <p id="longDes"></p>
+          </div>
     </div>
+    
     <div id="maindiv"></div>
       <script>
-        
-        let proto = [["airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams."],
-        ["injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product."],
-        ["tablemain.png", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router."]]
-        let roboAndProg = [["syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine."],
-        ["carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms."],
-        ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino."],
-        ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos."]]
-        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate."],
-        ["", "Math Tutoring", "I'm not sure if I should include this."]]
+        var airDes = "Longer description goes here. Can declare line break with <br> and bold with <strong>bolddd</strong>";
+        let airImgs = ["airnobg.png", "airengineback.jpg","airengine1.jpg"]
+        var injDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let injImgs = [];
+        var tblDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let tblImgs = [];
+        var subDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let subImgs = [];
+        var carDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let carImgs = [];
+        var codeDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let codeImgs = [];
+        var roboDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let roboImgs = [];
+        var atcDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let atcImgs = [];
+        var mmmDes = "This is where my <strong><i>amazing</i></strong> description will go!";
+        let mmmImgs = [];
+        //main img, title, mini des, long des, more imgs, year, keywords....
+        let proto = [["airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams.", airDes, airImgs, "Junior Year Prototyping Class","ex1","ex2"],
+        ["injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product.",injDes, injImgs, "Junior Year Prototyping Class","ex1","ex2"],
+        ["tablemain.png", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router.",tblDes, tblImgs, "Junior Year Prototyping Class","ex1","ex2"]]
+        let roboAndProg = [["syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine.",subDes, subImgs, "Summer 2022","ex1","ex2"],
+        ["carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","ex1","ex2"],
+        ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","ex1","ex2"],
+        ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","ex1","ex2"]]
+        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","ex1","ex2"],
+        ["", "Math Tutoring", "I'm not sure if I should include this.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","ex1","ex2"]]
         let orderOfSections = [["Giving Back",giving],
         ["Robotics & Programming", roboAndProg],
         ["Prototyping & Design",proto]] //official name to display, array of info
@@ -50,6 +73,57 @@
             header.innerHTML=headerText;
             para.innerHTML = paraText;
             mainDiv.opacity="70%"
+        }
+        function openPopUp(){
+            let cont = this.children;
+            var myId = cont[0].id;
+            var projectName = myId.slice(0,myId.indexOf("_"));
+            var nums = myId.slice(myId.indexOf("_")+1);
+            //console.log(nums);
+            var sectionNum = (nums.slice(0,nums.indexOf("_")));
+            var projectNum = (nums.slice(nums.indexOf("_")+1));
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            //ids: mTitle, keyWords, date, longDes
+            document.getElementById("mTitle").innerHTML = projectName;
+            
+            var myInfoArr = orderOfSections[sectionNum][1][projectNum];
+            var myDes = myInfoArr[3];
+            console.log("info arr: "+myInfoArr)
+            let images = myInfoArr[4];
+            var year = myInfoArr[5];
+            let keySkills = myInfoArr.slice(6);
+            
+
+            //KEY SKILLS:
+            var keyList = document.createElement("ul");
+            for(var i=0; i<keySkills.length; i++){
+                var newElem = document.createElement("li");
+                newElem.innerHTML=keySkills[i];
+                keyList.appendChild(newElem);
+            }
+            document.getElementById("keyWords").appendChild(keyList);
+
+            //MAIN DESCRIPTION:
+            document.getElementById("longDes").innerHTML = myDes;
+
+            //YEAR INFO:
+            document.getElementById("date").innerHTML = year;
+
+            // When the user clicks on <span> (x), close the modal
+            modal.style.display = "block";
+            span.onclick = function() {
+            modal.style.display = "none";
+            document.getElementById("keyWords").removeChild(keyList);
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.getElementById("keyWords").removeChild(keyList);
+            }
+            } 
         }
         function setUpPage(){
             var itemsPerRow = 2;
@@ -82,19 +156,20 @@
                     }
                     
                     var myProj = sectionArray[projectNum];//image URL, name, description, key skills
-                    var keySkills = myProj.slice(3);
+                    var keySkills = myProj.slice(4);
                     console.log(keySkills);
                     
                     var projBack = document.createElement("div");
                     projBack.className = "proj_div";
                     var siteName = myProj[1].toLowerCase().replace(" ", "_")+".html";//format for sites
                     console.log(siteName)
+                    projBack.onclick = openPopUp;
                     //projBack.setAttribute("onclick", "openURL",siteName);
                     //projBack.onclick="openURL("+siteName+")";//this might be wrong :(
                     var urlInfo = "url("+myProj[0]+")";
                     console.log(urlInfo);
                     var link = document.createElement("a");
-                    link.href = siteName;
+                    //link.href = siteName;
                     link.className="w3-col s"+Math.floor(12/itemsPerRow)+" w3-center";
                     projBack.style.backgroundImage=urlInfo;
                     projBack.style.backgroundRepeat="no-repeat";
@@ -120,7 +195,7 @@
                     infop.style.fontSize = "18px";
                     infoHead.style.fontSize="25px";
                     infoText.appendChild(infoHead);
-                    infoText.id=myProj[1];
+                    infoText.id=myProj[1]+"_"+sectionNum+"_"+projectNum;
                     infoText.appendChild(infop);
 
                     projBack.appendChild(infoText);
