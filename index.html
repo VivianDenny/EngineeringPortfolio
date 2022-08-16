@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- NEXT: make the picture slideshow at top of the popup, update with real information, format the pop up, add a title and maybe pic of me at the top of page -->
+<!-- NEXT: maybe make image clickable to the source/more info?, update with real information, format the main page, add a title and maybe pic of me at the top of page -->
 <head>
     <title>Vivian Denny Engineering Portfolio</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -41,10 +41,10 @@
         let injImgs = [];
         var tblDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let tblImgs = [];
-        var subDes = "This is where my <strong><i>amazing</i></strong> description will go!";
-        let subImgs = [];
-        var carDes = "This is where my <strong><i>amazing</i></strong> description will go!";
-        let carImgs = [];
+        var subDes = "This summer, I worked on creating an initial prototype of a ballast system for my senior research project: an autonomous submarine. Ever since the lab director told me about this project, I was immediately fixated on undertaking this large task, and I wanted to get an early start to better my chances of completing the project. The end goal is to be able to compete in the RoboSub competition, having the submarine complete a variety of tasks, like gathering objects or going through gates. I started by researching different designs, creating a CAD prototype, and then creating the 3D printed prototype. I then reiterated the design to strengthen it and improve its accuracy.";
+        let subImgs = [["Sub/subex.jpg", "Initial prototype being assembled."], ["Sub/CADDes1.png","Initial Computer Aided Design (CAD) drawing."], ["Sub/motors.jpg","Motor assembly & soldering."],["Sub/3DEx.png","File for 3D printing created on the software <i>PrusaSlicer</i>."],["Sub/motorshield.jpg", "Motor shield set up for propeller motors."],["Sub/CADV2.png","Redesigned ballast structure."]];
+        var carDes = "In my electronics tasks, we were challenged to create a self driving car to compete against the others in the class. I helped my teacher assemble the base car that we were going to use in the races, and then worked towards developing an algorithm to be fastest while avoiding any obstacle. I learned how to pull from existing code structures to extract data from the Lidar, and had to consider the speed that the Lidar sent data in my processing. After many different approaches and test runs, I was able to create the fastest car in my class.";
+        let carImgs = [["Car/carmain.jpg","Assembled car with Lidar sensor."],["Car/LidarSetup.jpg","Configuring Lidar & exploring how to process its data."],["Car/Track.jpg","My car racing around a corner using Lidar input and my algorithm."]];
         var codeDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let codeImgs = [];
         var roboDes = "This is where my <strong><i>amazing</i></strong> description will go!";
@@ -60,11 +60,11 @@
         let proto = [["airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams.", airDes, airImgs, "Junior Year Prototyping Class","ex1","ex2"],
         ["injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product.",injDes, injImgs, "Junior Year Prototyping Class","ex1","ex2"],
         ["tablemain.png", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router.",tblDes, tblImgs, "Junior Year Prototyping Class","ex1","ex2"]]
-        let roboAndProg = [["syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine.",subDes, subImgs, "Summer 2022","ex1","ex2"],
-        ["carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","ex1","ex2"],
+        let roboAndProg = [["Sub/syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine.",subDes, subImgs, "Summer 2022","Computer Aided Design (CAD).","Engineering Design Process.", "Soldering","3D Printing."],
+        ["Car/carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","Lidar sensor.","Data processing."],
         ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","ex1","ex2"],
         ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","ex1","ex2"]]
-        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
+        let giving = [["ATC/NuVoiceScreen.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
         ["", "Math Tutoring", "I'm not sure if I should include this.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","ex1","ex2"]]
         let orderOfSections = [["Giving Back",giving],
         ["Robotics & Programming", roboAndProg],
@@ -107,7 +107,9 @@
             let keySkills = myInfoArr.slice(6);
             
             //IMAGE SLIDESHOW:
+            slideIndex = 1;
             var totImages = images.length;
+            var imgHolder = document.createElement("div");
             for(var i=0; i<totImages; i++){
                 var imgURL = images[i][0];
                 var imgCapt = images[i][1];
@@ -129,9 +131,9 @@
                 overallDiv.appendChild(nums);
                 overallDiv.appendChild(myImg);
                 overallDiv.appendChild(capt);
-                document.getElementById("slides").appendChild(overallDiv);
+                imgHolder.appendChild(overallDiv);
             }
-           
+            document.getElementById("slides").appendChild(imgHolder);
             
            
             //KEY SKILLS:
@@ -156,7 +158,9 @@
             modal.style.display = "block";
             span.onclick = function() {
             modal.style.display = "none";
+            clearInterval(int);
             document.getElementById("keyWords").removeChild(keyList);
+            document.getElementById("slides").removeChild(imgHolder);
             
             }
 
@@ -164,6 +168,8 @@
             window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                clearInterval(int);
+                document.getElementById("slides").removeChild(imgHolder);
                 document.getElementById("keyWords").removeChild(keyList);
             }
             } 
