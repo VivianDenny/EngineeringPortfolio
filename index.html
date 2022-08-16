@@ -16,8 +16,22 @@
 <body>
     <div id="myModal" class="modal">
         <div class="modal-content">
+
             <span class="close">&times;</span>
             <h3 id="mTitle"></h3>
+             <!-- Slideshow container -->
+<div id="slides" class="slideshow-container" style="width:50%;">
+
+        <!-- Full-width images with number and caption text -->
+        
+  
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        
+        
             <p id="date"></p>
             <div id="keyWords"></div>
             <p id="longDes"></p>
@@ -27,7 +41,7 @@
     <div id="maindiv"></div>
       <script>
         var airDes = "Longer description goes here. Can declare line break with <br> and bold with <strong>bolddd</strong>";
-        let airImgs = ["airnobg.png", "airengineback.jpg","airengine1.jpg"]
+        let airImgs = [["airnobg.png", ""], ["airengineback.jpg", "Caption Two"],["airengine1.jpg", "Caiption :)))"]]
         var injDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let injImgs = [];
         var tblDes = "This is where my <strong><i>amazing</i></strong> description will go!";
@@ -40,10 +54,13 @@
         let codeImgs = [];
         var roboDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let roboImgs = [];
-        var atcDes = "This is where my <strong><i>amazing</i></strong> description will go!";
-        let atcImgs = [];
+        var atcDes = "Beginning in my freshman year, I have been actively involved in the Assistive Technology Club at my school designing digital games, books, and modified computer programs for students with verbal and motor disabilities, meeting weekly to share our creations with them. In my junior year as president of the Assistive Technology club, I expanded the club from 4 members to 12, raised awareness about what our club does on various media outlets, and organized our club to work with additional projects. I've seen the progress in each student we work with, watching them grow from struggling to say a few words to creating sentences alone due to our club. Starting the club with no coding background gives me first-hand experience learning to code through the club, and allows me to share this insight with new members. I also organize weekly outside of school meetings to create new materials, delegate tasks to club members, and plan field trips to visit the students. <br>You can view our media features on <a href='https://www.fox5dc.com/video/1025707' class='popLinks' target='_blank'>Fox</a>, <a target='_blank' class='popLinks' href='https://wtop.com/fairfax-county/2022/01/fairfax-co-school-club-connects-high-schoolers-with-nonverbal-elementary-students/'>WTOP</a>, <a target='_blank' class='popLinks' href='https://www.wusa9.com/article/entertainment/television/programs/get-up-dc/assistive-technology-club-at-thomas-jefferson-high-school-helps-nonverbal-elementary-school-students-better-communicate/65-848bab63-d739-478f-9ee4-c05d75e747fc'>WUSA</a>, <a class='popLinks' target='_blank' href='https://wjla.com/news/local/gifted-hs-students-thomas-jefferson-high-school-special-needs-heads-hearts-to-help-non-verbal-es-students-communicate'>WJLA</a>, and <a class='popLinks' target='_blank' href='https://www.fcps.edu/blog/tjhsst-students-use-coding-and-creativity-communicate-non-verbal-elementary-students'>FCPS Media</a>.";
+        let atcImgs = [["ATC/FCPSMediaImg.png", "Student showing club members what the sentence he created on his device.<br><i>Credit: FCPS Media</i>"],["ATC/WTOPImg.png", "Student smiling after successful completion of task.<br><i>Credit: FCPS Media</i>"], ["ATC/FCPSMediaImg2.png", "Club members displaying an activity.<br><i>Credit: FCPS Media</i>"],
+        ["ATC/MiniGamesHome.png","Minigame start screen, part of a project working with students with motor disabilities."],["ATC/FruitNinja.png", "Fruit Ninja: one input game designed for students with motor disabilities."]];
         var mmmDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let mmmImgs = [];
+        var slideIndex = 1;
+        var int;
         //main img, title, mini des, long des, more imgs, year, keywords....
         let proto = [["airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams.", airDes, airImgs, "Junior Year Prototyping Class","ex1","ex2"],
         ["injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product.",injDes, injImgs, "Junior Year Prototyping Class","ex1","ex2"],
@@ -52,7 +69,7 @@
         ["carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","ex1","ex2"],
         ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","ex1","ex2"],
         ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","ex1","ex2"]]
-        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","ex1","ex2"],
+        let giving = [["#.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
         ["", "Math Tutoring", "I'm not sure if I should include this.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","ex1","ex2"]]
         let orderOfSections = [["Giving Back",giving],
         ["Robotics & Programming", roboAndProg],
@@ -94,7 +111,33 @@
             var year = myInfoArr[5];
             let keySkills = myInfoArr.slice(6);
             
-
+            //IMAGE SLIDESHOW:
+            var totImages = images.length;
+            for(var i=0; i<totImages; i++){
+                var imgURL = images[i][0];
+                var imgCapt = images[i][1];
+                var overallDiv = document.createElement("div");
+                overallDiv.className = "mySlides fade";
+                var nums = document.createElement("div");
+                nums.className = "numbertext";
+                nums.innerHTML = (i+1)+" / "+totImages;
+                var myImg = document.createElement("img");
+                myImg.src = imgURL;
+                myImg.style.height = "200px";
+                //console.log(myImg.style.width);
+                //document.getElementById("slides").style.width = myImg.style.width+"px";
+                myImg.style.width = "100%";
+                var capt = document.createElement("div");
+                capt.className="text";
+                capt.innerHTML=imgCapt;
+                overallDiv.appendChild(nums);
+                overallDiv.appendChild(myImg);
+                overallDiv.appendChild(capt);
+                document.getElementById("slides").appendChild(overallDiv);
+            }
+           
+            
+           
             //KEY SKILLS:
             var keyList = document.createElement("ul");
             for(var i=0; i<keySkills.length; i++){
@@ -103,18 +146,22 @@
                 keyList.appendChild(newElem);
             }
             document.getElementById("keyWords").appendChild(keyList);
-
+            showSlides(slideIndex);
             //MAIN DESCRIPTION:
             document.getElementById("longDes").innerHTML = myDes;
 
             //YEAR INFO:
             document.getElementById("date").innerHTML = year;
-
+            int = setInterval(function(){
+            slideIndex+=1;
+            showSlides(slideIndex);
+        }, 5000);
             // When the user clicks on <span> (x), close the modal
             modal.style.display = "block";
             span.onclick = function() {
             modal.style.display = "none";
             document.getElementById("keyWords").removeChild(keyList);
+            
             }
 
             // When the user clicks anywhere outside of the modal, close it
@@ -215,5 +262,35 @@
                 }
             }
         }
+        //SLIDESHOW CODE:
+        
+        
+        function plusSlides(n){
+            clearInterval(int);
+            int = setInterval(function(){
+            slideIndex+=1;
+            showSlides(slideIndex);
+            }, 5000);
+           showSlides(slideIndex+=n);
+            
+        }
+        // function currentSlide(){
+        //     console.log(this.id);
+        //     showSlides(parseInt(this.id));
+        // }
+        function showSlides(n){
+            slideIndex = n;
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            //console.log("show slides")
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            slides[slideIndex-1].style.display = "block";
+            
+            } 
       </script>
     </body>
