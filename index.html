@@ -45,8 +45,10 @@
         let subImgs = [["Sub/subex.jpg", "Initial prototype being assembled."], ["Sub/CADDes1.png","Initial Computer Aided Design (CAD) drawing."], ["Sub/motors.jpg","Motor assembly & soldering."],["Sub/3DEx.png","File for 3D printing created on the software <i>PrusaSlicer</i>."],["Sub/motorshield.jpg", "Motor shield set up for propeller motors."],["Sub/CADV2.png","Redesigned ballast structure."]];
         var carDes = "In my electronics tasks, we were challenged to create a self driving car to compete against the others in the class. I helped my teacher assemble the base car that we were going to use in the races, and then worked towards developing an algorithm to be fastest while avoiding any obstacle. I learned how to pull from existing code structures to extract data from the Lidar, and had to consider the speed that the Lidar sent data in my processing. After many different approaches and test runs, I was able to create the fastest car in my class.";
         let carImgs = [["Car/carmain.jpg","Assembled car with Lidar sensor."],["Car/LidarSetup.jpg","Configuring Lidar & exploring how to process its data."],["Car/Track.jpg","My car racing around a corner using Lidar input and my algorithm."]];
-        var codeDes = "This is where my <strong><i>amazing</i></strong> description will go!";
-        let codeImgs = [];
+        var codeDes = "Through a variety of coursework in Computer Science, I have learned how to use Java and Python. I also learned about creating websites through the Assistive Technology Club that I have been a part of (mentioned above), which required exploring HTML, CSS, and Javascript on my own. I started learning about using the Arduino in my freshman Design and Technology class, and I became fascinated with the fusion of the physical and programming aspects of creating, leading me to explore into the variety of things I could accomplish using an Arduino.I am now able to apply these skills in a variety of projects, from using an Arduino to control a car to creating this website.";
+        let codeImgs = [["Code/KMeansComp.png", "A comparison between the reference image (right) and the computer generated one (left) using a K-Means algorithm."],
+        ["Code/Othello.png", "My othello AI (black) playing against me (white)."],
+        ["Code/RR.png","Algorithm to find an optimal path through railroad stations from two cities."]];
         var roboDes = "This is where my <strong><i>amazing</i></strong> description will go!";
         let roboImgs = [];
         var atcDes = "Beginning in my freshman year, I have been actively involved in the Assistive Technology Club at my school designing digital games, books, and modified computer programs for students with verbal and motor disabilities, meeting weekly to share our creations with them. In my junior year as president of the Assistive Technology club, I expanded the club from 4 members to 12, raised awareness about what our club does on various media outlets, and organized our club to work with additional projects. I've seen the progress in each student we work with, watching them grow from struggling to say a few words to creating sentences alone due to our club. Starting the club with no coding background gives me first-hand experience learning to code through the club, and allows me to share this insight with new members. I also organize weekly outside of school meetings to create new materials, delegate tasks to club members, and plan field trips to visit the students. <br>You can view our media features on <a href='https://www.fox5dc.com/video/1025707' class='popLinks' target='_blank'>Fox</a>, <a target='_blank' class='popLinks' href='https://wtop.com/fairfax-county/2022/01/fairfax-co-school-club-connects-high-schoolers-with-nonverbal-elementary-students/'>WTOP</a>, <a target='_blank' class='popLinks' href='https://www.wusa9.com/article/entertainment/television/programs/get-up-dc/assistive-technology-club-at-thomas-jefferson-high-school-helps-nonverbal-elementary-school-students-better-communicate/65-848bab63-d739-478f-9ee4-c05d75e747fc'>WUSA</a>, <a class='popLinks' target='_blank' href='https://wjla.com/news/local/gifted-hs-students-thomas-jefferson-high-school-special-needs-heads-hearts-to-help-non-verbal-es-students-communicate'>WJLA</a>, and <a class='popLinks' target='_blank' href='https://www.fcps.edu/blog/tjhsst-students-use-coding-and-creativity-communicate-non-verbal-elementary-students'>FCPS Media</a>.";
@@ -62,7 +64,7 @@
         ["tablemain.png", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router.",tblDes, tblImgs, "Junior Year Prototyping Class","ex1","ex2"]]
         let roboAndProg = [["Sub/syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine.",subDes, subImgs, "Summer 2022","Computer Aided Design (CAD).","Engineering Design Process.", "Soldering","3D Printing."],
         ["Car/carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","Lidar sensor.","Data processing."],
-        ["#.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","ex1","ex2"],
+        ["Code/catK20.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","Programming skills.","Debugging code."],
         ["#.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","ex1","ex2"]]
         let giving = [["ATC/NuVoiceScreen.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
         ["", "Math Tutoring", "I'm not sure if I should include this.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","ex1","ex2"]]
@@ -71,14 +73,12 @@
         ["Prototyping & Design",proto]] //official name to display, array of info
         setUpPage();
         function openURL(myURL){
-            console.log("clicked");
-            console.log(myURL);
+            
             window.open(myURL, "_self")
         }
         function openKeyInfo(name){
             
-            console.log("mouseover");
-            console.log(name);
+           
             document.getElementById(name).style.opacity="100%";
          }
         function closeKeyInfo(headText, paraText, mainDiv, header, para){
@@ -101,7 +101,6 @@
             
             var myInfoArr = orderOfSections[sectionNum][1][projectNum];
             var myDes = myInfoArr[3];
-            console.log("info arr: "+myInfoArr)
             let images = myInfoArr[4];
             var year = myInfoArr[5];
             let keySkills = myInfoArr.slice(6);
@@ -206,17 +205,14 @@
                     
                     var myProj = sectionArray[projectNum];//image URL, name, description, key skills
                     var keySkills = myProj.slice(4);
-                    console.log(keySkills);
                     
                     var projBack = document.createElement("div");
                     projBack.className = "proj_div";
                     var siteName = myProj[1].toLowerCase().replace(" ", "_")+".html";//format for sites
-                    console.log(siteName)
                     projBack.onclick = openPopUp;
                     //projBack.setAttribute("onclick", "openURL",siteName);
                     //projBack.onclick="openURL("+siteName+")";//this might be wrong :(
                     var urlInfo = "url("+myProj[0]+")";
-                    console.log(urlInfo);
                     var link = document.createElement("a");
                     //link.href = siteName;
                     link.className="w3-col s"+Math.floor(12/itemsPerRow)+" w3-center";
@@ -283,15 +279,26 @@
         function showSlides(n){
             slideIndex = n;
             let i;
+            var duration = .5;
+            var changeIndex = 0;
             let slides = document.getElementsByClassName("mySlides");
             //console.log("show slides")
             if (n > slides.length) {slideIndex = 1}
             if (n < 1) {slideIndex = slides.length}
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
+                // if(slides[i].style.display == "block"){
+                //     //fade out
+                //     slides[i].style.animationName = "fadeOut";
+                //     slides[i].style.animationDuration = duration+"s";
+                //     changeIndex = i;
+                // }
             }
+            //setTimeout(function(){
+            //    slides[changeIndex].style.display="none";
+                slides[slideIndex-1].style.display = "block";
+           // }, duration*1000)
             
-            slides[slideIndex-1].style.display = "block";
             
             } 
       </script>
