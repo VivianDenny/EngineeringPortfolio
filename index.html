@@ -69,6 +69,7 @@
         let mmmImgs = [];
         var slideIndex = 1;
         var int;
+        var totImages;
         //main img, title, mini des, long des, more imgs, year, keywords....
         let proto = [["AE/airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams.", airDes, airImgs, "Junior Year Prototyping Class","Precise measurement.","Following manufacturing instructions."],
         ["INJ/injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product.",injDes, injImgs, "Junior Year Prototyping Class","Injection molding.","Designing around constraints."],
@@ -118,7 +119,7 @@
             
             //IMAGE SLIDESHOW:
             slideIndex = 1;
-            var totImages = images.length;
+            totImages = images.length;
             var imgHolder = document.createElement("div");
             for(var i=0; i<totImages; i++){
                 var imgURL = images[i][0];
@@ -128,6 +129,7 @@
                 var nums = document.createElement("div");
                 nums.className = "numbertext";
                 nums.innerHTML = (i+1)+" / "+totImages;
+               // nums.addEventListener("mouseover",pauseDisplay);
                 var myImg = document.createElement("img");
                 myImg.src = imgURL;
                 myImg.style.height = "200px";
@@ -184,6 +186,32 @@
             }
             } 
         }
+        // function pauseDisplay(){
+        //     this.addEventListener("mouseout", restore);
+        //     if(this.innerHTML!="▶"){//not paused already
+        //     this.innerHTML = "||"
+        //     }
+        //     this.onclick = function(){
+        //         this.innerHTML = "&#9654;";
+        //         clearInterval(int);
+        //         newClick(this);
+        //     };
+        // }
+        // function newClick(myItem){
+        //     myItem.onclick= function(){
+        //             restore();
+        //             int = setInterval(function(){
+        //             slideIndex+=1;
+        //             showSlides(slideIndex);
+        //             }, 5000);
+        //         }
+        // }
+        // function restore(){
+        //     console.log(this.innerHTML)
+        //     if(this.innerHTML!="▶"){
+        //         this.innerHTML = slideIndex + " / "+totImages;
+        //     }
+        // }
         function setUpPage(){
             var itemsPerRow = 2;
             for(var sectionNum=0; sectionNum<orderOfSections.length; sectionNum++){
