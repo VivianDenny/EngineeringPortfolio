@@ -18,13 +18,14 @@
 
 }
 .overlay{
-    background-color: #2e3256;
+    /* background-color: #2e3256; */
+    background-color: transparent;/* #36394b;*/
     color: #f5f5f5;
     /* background-color: #e5e3df;
     color: black; */
     opacity: 75%;
     min-height: 85%;
-    
+    /* position: absolute; */
     /* height:85%; */
     
 }
@@ -79,6 +80,9 @@
    max-height: "300px";
    overflow-y:"auto";
 } */
+.proj_div{
+  background-color: #527872;
+}
 h3{
     font-family: 'Poppins', sans-serif;
 }
@@ -86,8 +90,10 @@ p{
     font-family: 'Open Sans', sans-serif;    
 }
 body{
-    background-color: #161424;
-    color: #f5f5f5;
+    background-color: #afe5dd;
+    color:#363636;
+    /* background-color: #161424; */
+    /* color: #f5f5f5; */
 
 }
 
@@ -218,7 +224,7 @@ body{
 }
 .mySlides {
   display: none;
-  
+  text-align: center;
 }
 
 /* The dots/bullets/indicators */

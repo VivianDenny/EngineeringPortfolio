@@ -65,8 +65,9 @@
         var atcDes = "Beginning in my freshman year, I have been actively involved in the Assistive Technology Club at my school designing digital games, books, and modified computer programs for students with verbal and motor disabilities, meeting weekly to share our creations with them. In my junior year as president of the Assistive Technology club, I expanded the club from 4 members to 12, raised awareness about what our club does on various media outlets, and organized our club to work with additional projects. I've seen the progress in each student we work with, watching them grow from struggling to say a few words to creating sentences alone due to our club. Starting the club with no coding background gives me first-hand experience learning to code through the club, and allows me to share this insight with new members. I also organize weekly outside of school meetings to create new materials, delegate tasks to club members, and plan field trips to visit the students. <br>You can view our media features on <a href='https://www.fox5dc.com/video/1025707' class='popLinks' target='_blank'>Fox</a>, <a target='_blank' class='popLinks' href='https://wtop.com/fairfax-county/2022/01/fairfax-co-school-club-connects-high-schoolers-with-nonverbal-elementary-students/'>WTOP</a>, <a target='_blank' class='popLinks' href='https://www.wusa9.com/article/entertainment/television/programs/get-up-dc/assistive-technology-club-at-thomas-jefferson-high-school-helps-nonverbal-elementary-school-students-better-communicate/65-848bab63-d739-478f-9ee4-c05d75e747fc'>WUSA</a>, <a class='popLinks' target='_blank' href='https://wjla.com/news/local/gifted-hs-students-thomas-jefferson-high-school-special-needs-heads-hearts-to-help-non-verbal-es-students-communicate'>WJLA</a>, and <a class='popLinks' target='_blank' href='https://www.fcps.edu/blog/tjhsst-students-use-coding-and-creativity-communicate-non-verbal-elementary-students'>FCPS Media</a>.";
         let atcImgs = [["ATC/FCPSMediaImg.png", "Student showing club members what the sentence he created on his device.<br><i>Credit: FCPS Media</i>"],["ATC/WTOPImg.png", "Student smiling after successful completion of task.<br><i>Credit: FCPS Media</i>"], ["ATC/FCPSMediaImg2.png", "Club members displaying an activity.<br><i>Credit: FCPS Media</i>"],
         ["ATC/MiniGamesHome.png","Minigame start screen, part of a project working with students with motor disabilities."],["ATC/FruitNinja.png", "Fruit Ninja: one input game designed for students with motor disabilities."]];
-        var mmmDes = "This is where my <strong><i>amazing</i></strong> description will go!";
-        let mmmImgs = [];
+        var mmmDes = "During the time of distance learning, I saw how hard it was for people to stay focused in online classrooms, and I wanted to use my love of math to help others. After starting my tutoring company, Math Made Mind, I received many customers who continued using my services the following years. I designed custom curriculums for each of my students to catch them up to speed, with interactive games and lessons to best fit their learning. Additionally, I donated part of the funds I raised through my tutoring initiative to my local food pantry.";
+        let mmmImgs = [["MMM/ClientReview.png","Client review of the impact my tutoring had."],
+        ["MMM/Quote.png","Quote as part of my tutoring ad, emphasizing the reason I started tutoring."],];
         var slideIndex = 1;
         var int;
         var totImages;
@@ -79,7 +80,7 @@
         ["Code/catK20.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","Programming skills.","Debugging code."],
         ["Robot/RobotBody.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","Arduino & Servo usage.","Laser cutting & 3D printing.","Gearbox design.","Computer Aided Design (CAD)."]]
         let giving = [["ATC/NuVoiceScreen.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
-        ["", "Math Tutoring", "&#8226; &#8226; &#8226;",mmmDes, mmmImgs, "Summers, Freshman Year - Present","ex1","ex2"]]
+        ["", "Math Tutoring", "After the pandemic hit, I started offering online tutoring to help students who were falling behind in math. Now, I have continued expanding my tutoring company to help more students.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","Working with students.","Explaining concepts.", "Marketing & Company growth."]];
         let orderOfSections = [["Giving Back",giving],
         ["Robotics & Programming", roboAndProg],
         ["Prototyping & Design",proto]] //official name to display, array of info
@@ -136,7 +137,7 @@
                 myImg.className = "fade";
                 //console.log(myImg.style.width);
                 //document.getElementById("slides").style.width = myImg.style.width+"px";
-                myImg.style.width = "100%";
+                //myImg.style.width = "100%";
                 var capt = document.createElement("div");
                 capt.className="text";
                 capt.innerHTML=imgCapt;
@@ -255,7 +256,7 @@
                     var link = document.createElement("a");
                     //link.href = siteName;
                     link.className="w3-col s"+Math.floor(12/itemsPerRow)+" w3-center";
-                    projBack.style.backgroundImage=urlInfo;
+                    //projBack.style.backgroundImage=urlInfo;//MAYBE MAKE A SEPERATE IMG SPOT
                     projBack.style.backgroundRepeat="no-repeat";
                     projBack.style.backgroundSize = "100% 100%";
                     projBack.style.height="100%";
@@ -264,7 +265,7 @@
                     projBack.style.marginRight="3px";
                     projBack.style.marginBottom="3px";
                     projBack.style.marginTop="3px";
-                    projBack.style.backgroundColor = "white";
+                    projBack.style.backgroundColor = "#36394b";
                     projBack.style.maxHeight = "300px";
                     projBack.style.overflowY="auto";
                     
@@ -281,7 +282,7 @@
                     infoText.appendChild(infoHead);
                     infoText.id=myProj[1]+"_"+sectionNum+"_"+projectNum;
                     infoText.appendChild(infop);
-
+                    
                     projBack.appendChild(infoText);
                     link.appendChild(projBack);
                     rows[rowCount].appendChild(link);
