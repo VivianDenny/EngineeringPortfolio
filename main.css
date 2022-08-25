@@ -113,16 +113,17 @@ body{
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
+    background-color: #afe5dd;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
+    color: black;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
   }
   
   /* The Close Button */
   .close {
-    color: #aaa;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -157,7 +158,7 @@ body{
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: rgb(82, 81, 81);
+  color: #2e3256;
   font-weight: bold;
   font-size: 18px;
   
@@ -174,7 +175,7 @@ body{
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+  background-color: #2e3256;
   color: white;
 }
 
@@ -187,7 +188,7 @@ body{
   left: -10px;
   animation-name: slideRight;
   animation-duration: 2.0s;
-  background-color: black;
+  background-color: #2e3256;
   opacity: 50%;
   color: white;
   /* color: transparent; */
@@ -213,7 +214,7 @@ body{
   color: #f2f2f2;
   font-size: 12px;
   padding: 8px 12px;
-  background-color: black;
+  background-color: #2e3256;
   opacity: 50%;
   position: absolute;
   top: -10px;
@@ -225,6 +226,8 @@ body{
 .mySlides {
   display: none;
   text-align: center;
+  padding: 10%;
+  background-color: #ceece7;
 }
 
 /* The dots/bullets/indicators */
