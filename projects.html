@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- NEXT: maybe make image clickable to the source/more info?, update with real information, format the main page, add a title and maybe pic of me at the top of page -->
+<head>
+    <title>Vivian Denny Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@900&family=Open+Sans&family=Poppins&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- font-family: 'Frank Ruhl Libre', serif; heading?
+    font-family: 'Open Sans', sans-serif; maybe plain
+    font-family: 'Poppins', sans-serif; maybe plain or subhead-->
+</head>
+
+<body>
+    <div id="navbar">
+        <h2 class="navinfo" onclick="openLink('index.html')">Home</h2>
+        <h2 class="navinfo-active" onclick="openLink('projects.html')">Projects</h2>
+    </div>
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+            <h1 class="popHeader" id="mTitle"></h1>
+            <p id="date"></p>
+             <!-- Slideshow container -->
+            <div id="slides" class="slideshow-container" style="width:50%;">
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+            <h3 class="popSub">Key Skills</h3>
+            <div id="keyWords"></div>
+            <h3 class="popSub">Description</h3>
+            <p id="longDes"></p>
+          </div>
+    </div>
+    
+    <div id="maindiv">
+        <div class="myTitleDiv"><h1 class="sectionTitle">PROJECTS</h1></div>
+    </div>
+      <script>
+        var airDes = "Created a functioning engine that spins a wheel when a stream of air is passed through it. I used a variety of machines to create this, such as CNC mills, bandsaws, metal workers, and drill presses. I also had to follow a manufacturing sheet to create this part, ensuring that I precisely measured, cut, and drilled in each part using measuring equipment like a caliper.";
+        let airImgs = [["AE/airenginemain.jpg","Side view of air engine fully constructed."],
+        ["AE/airengine1.jpg","Air engine view showing the wheel that is driven by the air input."],
+        ["AE/airmove.jpg","Air engine in motion with the air blower attached in the back."]];
+        var injDes = "For this project, I was able to create anything of my design, allowing me to freely exercise the CAD skills I developed. I had to split the design in half to create the mold halves, fasten them together, and then use an injection mold. I also had to consider the constraints that came with using a CNC mill while designing the part, such as having the widest elements at the top of the mold halves in order for the machine to cut each design and balancing the smoothness of the mold with how long it would take to mill. The design had to be modified because air was getting trapped in the mold, creating pockets in the final product, so I drilled a few small holes in the mold, and kept injecting plastic until a satisfactory product was obtained.";
+        let injImgs = [["INJ/injectionfilled.jpg","Mold I created filled with melted plastic."],
+        ["INJ/injectionmain.jpg","Mold opened to reveal the final product."]];
+        var tblDes = "At the end of the school year, I had finished all of the assigned projects in my prototyping class, so my teacher gave me the freedom to use any material and machinery that I wanted to create something of my design. After considering the wide variety of things I could create, I chose to create a skee-ball like game table which I could bring home and use. Plus, this allowed me to explore using a machine I had yet to try: the CNC wood router. After designing and cutting out the tabletop parts, I used the bandsaw to cut long metal rods to form the legs. I used the metal worker to bend the rods and soldered them to metal plates to be drilled into the tabletop. I had to strengthen my initial design after assembling it, adding rods going across the legs to keep it from falling over.";
+        let tblImgs = [["Table/tablefinal.jpg","Final product of the game table."],
+        ["Table/weldtable.jpg","Close up of welded joint."],
+        ["Table/TableCAD.png","CAD of pieces to be constructed out of wood."],
+        ["Table/tableopen.jpg","Interior view of the game table space. Allows the tabletop to be elevated, allowing balls to roll to the collection area in the front."],
+        ["Table/weld.jpg", "Table supports being welded on."]];
+        var subDes = "This summer, I worked on creating an initial prototype of a ballast system for my senior research project: an autonomous submarine. Ever since the lab director told me about this project, I was immediately fixated on undertaking this large task, and I wanted to get an early start to better my chances of completing the project. The end goal is to be able to compete in the RoboSub competition, having the submarine complete a variety of tasks, like gathering objects or going through gates. I started by researching different designs, creating a CAD prototype, and then creating the 3D printed prototype. I then reiterated the design to strengthen it and improve its accuracy.";
+        let subImgs = [["Sub/subex.jpg", "Initial prototype being assembled."], ["Sub/CADDes1.png","Initial Computer Aided Design (CAD) drawing."], ["Sub/motors.jpg","Motor assembly & soldering."],["Sub/3DEx.png","File for 3D printing created on the software <i>PrusaSlicer</i>."],["Sub/motorshield.jpg", "Motor shield set up for propeller motors."],["Sub/CADV2.png","Redesigned ballast structure."]];
+        var carDes = "In my electronics tasks, we were challenged to create a self driving car to compete against the others in the class. I helped my teacher assemble the base car that we were going to use in the races, and then worked towards developing an algorithm to be fastest while avoiding any obstacle. I learned how to pull from existing code structures to extract data from the Lidar, and had to consider the speed that the Lidar sent data in my processing. After many different approaches and test runs, I was able to create the fastest car in my class.";
+        let carImgs = [["Car/carmain.jpg","Assembled car with Lidar sensor."],["Car/LidarSetup.jpg","Configuring Lidar & exploring how to process its data."],["Car/Track.jpg","My car racing around a corner using Lidar input and my algorithm."]];
+        var codeDes = "Through a variety of coursework in Computer Science, I have learned how to use Java and Python. I also learned about creating websites through the Assistive Technology Club that I have been a part of (mentioned above), which required exploring HTML, CSS, and Javascript on my own. I started learning about using the Arduino in my freshman Design and Technology class, and I became fascinated with the fusion of the physical and programming aspects of creating, leading me to explore into the variety of things I could accomplish using an Arduino.I am now able to apply these skills in a variety of projects, from using an Arduino to control a car to creating this website.";
+        let codeImgs = [["Code/KMeansComp.png", "A comparison between the reference image (right) and the computer generated one (left) using a K-Means algorithm."],
+        ["Code/Othello.png", "My othello AI (black) playing against me (white)."],
+        ["Code/RR.png","Algorithm to find an optimal path through railroad stations from two cities."]];
+        var roboDes = "The robot project is a traditional project that every freshman at my school must undertake, learning how to manage time through a project integrating the various technologies learned in freshman year. Although I never got to finish this project due to the start of the pandemic, I learned about key design elements that I am able to apply in other projects, such as working with gear chains and gearboxes, reiterating designs, and the large influence material selection has on design success.";
+        let roboImgs = [["Robot/RobotBody.png","CAD design for my robot."],
+        ["Robot/RoboFlat.png","Robot parts laid out for laser cutting."],
+        ["Robot/RoboCut.png","Wood that has been laser cut for my project."],
+        ["Robot/ServoSetup.png","Testing and calibrating servos."],
+        ["Robot/WheelAndGear.png","Wheel set up with the gear that will drive it."]];
+        var atcDes = "Beginning in my freshman year, I have been actively involved in the Assistive Technology Club at my school designing digital games, books, and modified computer programs for students with verbal and motor disabilities, meeting weekly to share our creations with them. In my junior year as president of the Assistive Technology club, I expanded the club from 4 members to 12, raised awareness about what our club does on various media outlets, and organized our club to work with additional projects. I've seen the progress in each student we work with, watching them grow from struggling to say a few words to creating sentences alone due to our club. Starting the club with no coding background gives me first-hand experience learning to code through the club, and allows me to share this insight with new members. I also organize weekly outside of school meetings to create new materials, delegate tasks to club members, and plan field trips to visit the students. <br>You can view our media features on <a href='https://www.fox5dc.com/video/1025707' class='popLinks' target='_blank'>Fox</a>, <a target='_blank' class='popLinks' href='https://wtop.com/fairfax-county/2022/01/fairfax-co-school-club-connects-high-schoolers-with-nonverbal-elementary-students/'>WTOP</a>, <a target='_blank' class='popLinks' href='https://www.wusa9.com/article/entertainment/television/programs/get-up-dc/assistive-technology-club-at-thomas-jefferson-high-school-helps-nonverbal-elementary-school-students-better-communicate/65-848bab63-d739-478f-9ee4-c05d75e747fc'>WUSA</a>, <a class='popLinks' target='_blank' href='https://wjla.com/news/local/gifted-hs-students-thomas-jefferson-high-school-special-needs-heads-hearts-to-help-non-verbal-es-students-communicate'>WJLA</a>, and <a class='popLinks' target='_blank' href='https://www.fcps.edu/blog/tjhsst-students-use-coding-and-creativity-communicate-non-verbal-elementary-students'>FCPS Media</a>.";
+        let atcImgs = [["ATC/FCPSMediaImg.png", "Student showing club members what the sentence he created on his device.<br><i>Credit: FCPS Media</i>"],["ATC/WTOPImg.png", "Student smiling after successful completion of task.<br><i>Credit: FCPS Media</i>"], ["ATC/FCPSMediaImg2.png", "Club members displaying an activity.<br><i>Credit: FCPS Media</i>"],
+        ["ATC/MiniGamesHome.png","Minigame start screen, part of a project working with students with motor disabilities."],["ATC/FruitNinja.png", "Fruit Ninja: one input game designed for students with motor disabilities."]];
+        var mmmDes = "During the time of distance learning, I saw how hard it was for people to stay focused in online classrooms, and I wanted to use my love of math to help others. After starting my tutoring company, Math Made Mind, I received many customers who continued using my services the following years. I designed custom curriculums for each of my students to catch them up to speed, with interactive games and lessons to best fit their learning. Additionally, I donated part of the funds I raised through my tutoring initiative to my local food pantry.";
+        let mmmImgs = [["MMM/ClientReview.png","Client review of the impact my tutoring had."],
+        ["MMM/Quote.png","Quote as part of my tutoring ad, emphasizing the reason I started tutoring."],];
+        var slideIndex = 1;
+        var int;
+        var totImages;
+        //main img, title, mini des, long des, more imgs, year, keywords....
+        let proto = [["AE/airnobg.png", "Air Engine", "Learned how to use a variety of machines and follow manufacturing instructions and diagrams.", airDes, airImgs, "Junior Year Prototyping Class","Precise measurement.","Following manufacturing instructions."],
+        ["INJ/injectnobg.png", "Injection Mold", "Used CNC mill to create a metal mold which was injected with plastic to create a final product.",injDes, injImgs, "Junior Year Prototyping Class","Injection molding.","Designing around constraints."],
+        ["Table/tablemain.jpg", "Game Table", "Created a game table, welding the metal legs and attaching them to the table top, designed through CAD and cut with a CNC wood router.",tblDes, tblImgs, "Junior Year Prototyping Class","Welding.","Using iron worker."]]
+        let roboAndProg = [["Sub/syringepump-nobg.png", "Submarine", "Designed a prototype ballast system from scratch over the summer in preparation for my senior research project: creating an autonomous submarine.",subDes, subImgs, "Summer 2022","Computer Aided Design (CAD).","Engineering Design Process.", "Soldering","3D Printing."],
+        ["Car/carmain-removebg-preview.png", "Self Driving Car", "Used Lidar sensor input to create a miniature self driving car to race around obstacles using optimal path finding algorithms.",carDes, carImgs, "Junior Year Electronics Class","Lidar sensor.","Data processing."],
+        ["Code/catK20.png", "Coding Background","Proficient in languages such as Java, Python, HTML, CSS, Javascrsipt, and C++ for Arduino.",codeDes, codeImgs, "Freshman Year - Present","Programming skills.","Debugging code."],
+        ["Robot/RobotBody.png", "Robot Project", "Application of robotics, CAD, and laser cutting to create a robot using wood, an Arduino, and servos.",roboDes, roboImgs, "Freshman Year Design and Technology Class","Arduino & Servo usage.","Laser cutting & 3D printing.","Gearbox design.","Computer Aided Design (CAD)."]]
+        let giving = [["ATC/NuVoiceScreen.png","Assistive Technology Club", "Met weekly with students with disabilities, sharing the games we create to help them better communicate.",atcDes, atcImgs, "Freshman Year - Present","HTML, CSS & Javascript.","Working with children.", "Leadership & club organization."],
+        ["MMM/randomMath.jpg", "Math Tutoring", "After the pandemic hit, I started offering online tutoring to help students who were falling behind in math. Now, I have continued expanding my tutoring company to help more students.",mmmDes, mmmImgs, "Summers, Freshman Year - Present","Working with students.","Explaining concepts.", "Marketing & Company growth."]];
+        let orderOfSections = [["Giving Back",giving],
+        ["Robotics & Programming", roboAndProg],
+        ["Prototyping & Design",proto]] //official name to display, array of info
+        setUpPage();
+        function openURL(myURL){
+            
+            window.open(myURL, "_self")
+        }
+        function openKeyInfo(name){
+            
+           
+            document.getElementById(name).style.opacity="100%";
+         }
+        function closeKeyInfo(headText, paraText, mainDiv, header, para){
+            header.innerHTML=headerText;
+            para.innerHTML = paraText;
+            mainDiv.opacity="70%"
+        }
+        function openLink(link){
+            window.open(link, "_self");
+        }
+        function openPopUp(){
+            let cont = this.children;
+            var myId = cont[0].id;
+            //console.log(cont[0])
+            var projectName = myId.slice(0,myId.indexOf("_"));
+            var nums = myId.slice(myId.indexOf("_")+1);
+            //console.log(nums);
+            var sectionNum = (nums.slice(0,nums.indexOf("_")));
+            var projectNum = (nums.slice(nums.indexOf("_")+1));
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            //ids: mTitle, keyWords, date, longDes
+            document.getElementById("mTitle").innerHTML = projectName;
+            //console.log("num"+sectionNum)
+            var myInfoArr = orderOfSections[sectionNum][1][projectNum];
+            var myDes = myInfoArr[3];
+            let images = myInfoArr[4];
+            var year = myInfoArr[5];
+            let keySkills = myInfoArr.slice(6);
+            
+            //IMAGE SLIDESHOW:
+            slideIndex = 1;
+            totImages = images.length;
+            var imgHolder = document.createElement("div");
+            for(var i=0; i<totImages; i++){
+                var imgURL = images[i][0];
+                var imgCapt = images[i][1];
+                var overallDiv = document.createElement("div");
+                overallDiv.className = "mySlides";
+                var nums = document.createElement("div");
+                nums.className = "numbertext";
+                nums.innerHTML = (i+1)+" / "+totImages;
+               // nums.addEventListener("mouseover",pauseDisplay);
+                var myImg = document.createElement("img");
+                myImg.src = imgURL;
+                myImg.style.height = "200px";
+                myImg.className = "fade";
+                //console.log(myImg.style.width);
+                //document.getElementById("slides").style.width = myImg.style.width+"px";
+                //myImg.style.width = "100%";
+                var capt = document.createElement("div");
+                capt.className="text";
+                capt.innerHTML=imgCapt;
+                overallDiv.appendChild(nums);
+                overallDiv.appendChild(myImg);
+                overallDiv.appendChild(capt);
+                imgHolder.appendChild(overallDiv);
+            }
+            document.getElementById("slides").appendChild(imgHolder);
+            
+           
+            //KEY SKILLS:
+            var keyList = document.createElement("ul");
+            for(var i=0; i<keySkills.length; i++){
+                var newElem = document.createElement("li");
+                newElem.innerHTML=keySkills[i];
+                keyList.appendChild(newElem);
+            }
+            document.getElementById("keyWords").appendChild(keyList);
+            showSlides(slideIndex);
+            //MAIN DESCRIPTION:
+            document.getElementById("longDes").innerHTML = myDes;
+
+            //YEAR INFO:
+            document.getElementById("date").innerHTML = year;
+            int = setInterval(function(){
+            slideIndex+=1;
+            showSlides(slideIndex);
+        }, 5000);
+            // When the user clicks on <span> (x), close the modal
+            modal.style.display = "block";
+            span.onclick = function() {
+            modal.style.display = "none";
+            clearInterval(int);
+            document.getElementById("keyWords").removeChild(keyList);
+            document.getElementById("slides").removeChild(imgHolder);
+            
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                clearInterval(int);
+                document.getElementById("slides").removeChild(imgHolder);
+                document.getElementById("keyWords").removeChild(keyList);
+            }
+            } 
+        }
+        // function pauseDisplay(){
+        //     this.addEventListener("mouseout", restore);
+        //     if(this.innerHTML!="▶"){//not paused already
+        //     this.innerHTML = "||"
+        //     }
+        //     this.onclick = function(){
+        //         this.innerHTML = "&#9654;";
+        //         clearInterval(int);
+        //         newClick(this);
+        //     };
+        // }
+        // function newClick(myItem){
+        //     myItem.onclick= function(){
+        //             restore();
+        //             int = setInterval(function(){
+        //             slideIndex+=1;
+        //             showSlides(slideIndex);
+        //             }, 5000);
+        //         }
+        // }
+        // function restore(){
+        //     console.log(this.innerHTML)
+        //     if(this.innerHTML!="▶"){
+        //         this.innerHTML = slideIndex + " / "+totImages;
+        //     }
+        // }
+        function setUpPage(){
+            var itemsPerRow = 2;
+            for(var sectionNum=0; sectionNum<orderOfSections.length; sectionNum++){
+                var sectionInfo = orderOfSections[sectionNum];
+                var sectionName = sectionInfo[0];
+                var sectionArray = sectionInfo[1];
+                var title = document.createElement("h1");
+                var titleDiv = document.createElement("div");
+                title.innerHTML = sectionName;
+                title.className = "projectSubhead";
+                //style more
+                titleDiv.style.width = "100%";
+                titleDiv.appendChild(title);
+                document.getElementById("maindiv").appendChild(titleDiv);
+                var rows = new Array(Math.ceil(sectionArray.length/Math.floor(12/itemsPerRow)));//is this right??
+                
+                var rowCount = -1;
+                
+                for(var projectNum=0; projectNum<sectionArray.length; projectNum++){
+                    //create stuff. add to a new row every itemsPerRow times
+                    //width is m(12//itemsPerRow)
+                    if(projectNum%itemsPerRow==0){
+                        rowCount+=1;
+                        rows[rowCount] = document.createElement("div");
+                        rows[rowCount].className ="w3-row-padding";
+                        rows[rowCount].style.display="flex";
+                        rows[rowCount].style.marginBottom="5px";
+                        
+                    }
+                    
+                    var myProj = sectionArray[projectNum];//image URL, name, description, key skills
+                    var keySkills = myProj.slice(4);
+                    
+                    var projBack = document.createElement("div");
+                    projBack.className = "proj_div";
+                    var siteName = myProj[1].toLowerCase().replace(" ", "_")+".html";//format for sites
+                    projBack.onclick = openPopUp;
+                    //projBack.setAttribute("onclick", "openURL",siteName);
+                    //projBack.onclick="openURL("+siteName+")";//this might be wrong :(
+                    var urlInfo = "url("+myProj[0]+")";
+                    var link = document.createElement("a");
+                    //link.href = siteName;
+                    link.className="w3-col s"+Math.floor(12/itemsPerRow)+" w3-center";
+                    projBack.style.backgroundImage=urlInfo;//MAYBE MAKE A SEPERATE IMG SPOT
+                    projBack.style.backgroundRepeat="no-repeat";
+                    projBack.style.backgroundSize = "100% 100%";
+                    projBack.style.height="100%";
+                    //projBack.style.padding="2%";
+                    projBack.style.marginLeft="3px";
+                    projBack.style.marginRight="3px";
+                    projBack.style.marginBottom="3px";
+                    projBack.style.marginTop="3px";
+                    projBack.style.backgroundColor = "#36394b";
+                    projBack.style.maxHeight = "300px";
+                    projBack.style.overflowY="auto";
+                    
+                    
+
+                    var infoText = document.createElement("h3");
+                    var bgOver = document.createElement("div");
+                    bgOver.className="bg_overlay";
+                    infoText.className = "overlay";//adjust the css for this
+                    //bgOver.onclick = openPopUp;
+                    //var infoHead = document.createElement("h3");
+                    infoText.innerHTML = myProj[1];
+                    //proj mini description: 
+                    //var infop = document.createElement("p");
+                    //infop.innerHTML = myProj[2];
+                    //infop.style.fontSize = "18px";
+                   // infoText.style.fontSize="25px";
+                    //infoText.appendChild(infoHead);
+                    bgOver.id=myProj[1]+"_"+sectionNum+"_"+projectNum;
+                    //infoText.appendChild(infop);
+                    bgOver.appendChild(infoText);
+
+                    projBack.appendChild(bgOver);
+                    link.appendChild(projBack);
+                    rows[rowCount].appendChild(link);
+                    var name = myProj[1];
+                    
+                    // projBack.onmouseover = function(){
+                    //     openKeyInfo(name);
+                    // };
+                    //projBack.onmouseout="closeKeyInfo(myProj[1],myProj[2],infoText, infoHead, infop)";
+                    //change row?? and append old to doc first
+                    if((projectNum!=0 && projectNum==sectionArray.length-1) || projectNum%itemsPerRow==0){
+                        document.getElementById("maindiv").appendChild(rows[rowCount]);
+                       // console.log(rowCount);
+                    }
+                }
+            }
+        }
+        //SLIDESHOW CODE:
+        
+        function scrollup(){
+            console.log("scroll")
+            setInterval(function(){
+                this.style.bottom+=1;
+            }, 10);
+        }
+        function plusSlides(n){
+            clearInterval(int);
+            int = setInterval(function(){
+            slideIndex+=1;
+            showSlides(slideIndex);
+            }, 5000);
+           showSlides(slideIndex+=n);
+            
+        }
+        // function currentSlide(){
+        //     console.log(this.id);
+        //     showSlides(parseInt(this.id));
+        // }
+        function showSlides(n){
+            slideIndex = n;
+            let i;
+            var duration = .5;
+            var changeIndex = 0;
+            let slides = document.getElementsByClassName("mySlides");
+            //console.log("show slides")
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                // if(slides[i].style.display == "block"){
+                //     //fade out
+                //     slides[i].style.animationName = "fadeOut";
+                //     slides[i].style.animationDuration = duration+"s";
+                //     changeIndex = i;
+                // }
+            }
+            //setTimeout(function(){
+            //    slides[changeIndex].style.display="none";
+                slides[slideIndex-1].style.display = "block";
+           // }, duration*1000)
+            
+            
+            } 
+      </script>
+    </body>
