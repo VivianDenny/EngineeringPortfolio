@@ -204,7 +204,13 @@ body{
   user-select: none;
   z-index: 11;
 }
-
+#pauseIcon{
+  position:absolute;
+  top:0;
+  left:0;
+  
+  display: none;
+}
 /* Position the "next button" to the right */
 .next {
   right: 0;
